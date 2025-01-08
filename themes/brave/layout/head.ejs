@@ -1,0 +1,31 @@
+<head>
+    <link href="/styles/main.css" rel="stylesheet" type="text/css"/>
+
+    <meta charset="UTF-8">
+    <%
+      var title = page.title;
+      if (is_archive()){
+          title = __('archive_a');
+      if (is_month()){
+          title += ': ' + page.year + '/' + page.month;
+      } else if (is_year()){
+          title += ': ' + page.year;
+      }
+      } else if (is_category()){
+      title = __('category') + ': ' + page.category;
+      } else if (is_tag()){
+      title = __('tag') + ': ' + page.tag;
+    }
+    %>
+    <title><% if (title){ %><%= title %> - <% } %><%= config.title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/4.6.1/css/bootstrap.min.css">
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/bootstrap/4.6.1/js/bootstrap.min.js"></script>
+
+<script src="https://npm.elemecdn.com/@waline/client@v2/dist/waline.js"></script>
+<link
+  rel="stylesheet"
+  href="https://npm.elemecdn.com/@waline/client@v2/dist/waline.css"
+/>
+</head>

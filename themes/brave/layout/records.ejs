@@ -1,0 +1,55 @@
+<div id="Pjax">
+  <div class="list-content mx-auto mt-5 fade-in-up">
+      <div class="list-top">
+          <h5 class="list-text fade-in-up">📜相信在以后会有更多美好的事情发生😊</h5>
+
+          <% site.posts.each(function(post, index){ %>
+
+              <div class="fade-in-up" style="transition-delay: <%= index * 0.2 %>s;">
+                <article :key="i" style="padding: 20px;border-bottom: 1px solid rgba(0,123,255,.2);text-align: center;"
+                    class="post" itemscope itemtype="http://schema.org/BlogPosting">
+                    <h4 class="post-title" itemprop="name headline">
+                    
+                        <a class="list-wbc" href="<%- url_for(post.path) %>">  <%= post.title %>
+                        </a>
+                    </h4>
+                    <time datetime="" itemprop="datePublished"> 深情地写于 <%= date(post.date) %></time>
+                </article>
+            </div>
+  
+          <% }) %>
+
+      </div>
+  </div>
+</div>
+
+<style>
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+    .fade-in-up.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    function showFadeInUpElements() {
+        $('.fade-in-up').each(function(i) {
+            var $item = $(this);
+            setTimeout(function() {
+                $item.addClass('show');
+            }, i * 200);
+        });
+    }
+
+    $(document).ready(function() {
+        showFadeInUpElements();
+    });
+
+    $(document).on('pjax:end', function() {
+        showFadeInUpElements();
+    });
+</script>

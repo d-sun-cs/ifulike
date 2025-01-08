@@ -1,0 +1,70 @@
+<div id="Pjax">
+    <h5 class="list-text scale-in">💕世间最动情之事，莫过于两人相依💑，走过四季三餐的温暖。</h5>
+    <p></p>
+    <div class="accordion mx-auto mt-5" id="loveList">
+      <% theme.lovelist.forEach(function(item,index){ %>
+          <div class="card scale-in">
+              <div class="card-header p-1 bg-white" id="heading<%= index %>">
+                      <h2 class="mb-0"><span class="btn ml-auto d-flex align-items-center collapsed" type="button"
+                          data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="false"
+                          aria-controls="collapse<%= index %>">
+                          <% if (item.status == 0) { %>
+                              <img class="statusIcon"src="/img/todo.png" />
+                          <% } else { %>
+                              <img class="statusIcon"src="/img/done.png" />
+                          <% } %>
+                          <strong><%= item.desc %></strong></span>
+                      </h2>
+              </div>
+              <% if (!!item.img) { %>
+                  <div id="collapse<%= index %>" class="collapse" aria-labelledby="heading<%= index %>" data-parent="#loveList">
+                      <div class="card-body p-0 scale-in">
+                          <img src="<%= item.img %>" alt="Description" style="width:100%; height:auto;">
+                      </div>
+                  </div>
+              <% } %>
+          </div>
+      <% }) %>
+    </div>
+</div>
+<style>
+    .scale-in {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.5s, transform 0.5s;
+        will-change: opacity, transform;
+    }
+    .scale-in.show {
+        opacity: 1;
+        transform: scale(1);
+    }
+</style>
+<script>
+    function isElementInViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function showScaleInElements() {
+        $('.scale-in').each(function() {
+            var $item = $(this);
+            if (isElementInViewport($item[0])) {
+                $item.addClass('show');
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        showScaleInElements();
+        $(window).on('scroll', showScaleInElements);
+    });
+
+    $(document).on('pjax:end', function() {
+        showScaleInElements();
+    });
+</script>

@@ -1,0 +1,80 @@
+<div id="Pjax">
+  <div class="container">
+      <h5 class="list-text fade-in-up">📷记录我们的美好瞬间</h5>
+      <div class="row">
+          <% theme.album.forEach(function(item, index){ %>
+              <div class="col-md-4 mb-4 scale-in">
+                  <div class="card">
+                      <img src="<%= item.img %>" class="card-img-top" alt="<%= item.desc %>">
+                      <div class="card-body fade-in-up">
+                          <p class="card-text"><%= item.desc %></p>
+                      </div>
+                  </div>
+              </div>
+          <% }) %>
+      </div>
+  </div>
+</div>
+
+<style>
+    .scale-in {
+        transform: scale(0);
+        transition: transform 0.5s ease-out;
+    }
+    .scale-in.show {
+        transform: scale(1);
+    }
+    .fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+    }
+    .fade-in-up.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    function isElementInViewport(el) {
+        var rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    function showScaleInElements() {
+        $('.scale-in').each(function() {
+            var $item = $(this);
+            if (isElementInViewport($item[0])) {
+                $item.addClass('show');
+            }
+        });
+    }
+
+    function showFadeInUpElements() {
+        $('.fade-in-up').each(function() {
+            var $item = $(this);
+            if (isElementInViewport($item[0])) {
+                $item.addClass('show');
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        showScaleInElements();
+        showFadeInUpElements();
+        $(window).on('scroll', function() {
+            showScaleInElements();
+            showFadeInUpElements();
+        });
+    });
+
+    $(document).on('pjax:end', function() {
+        showScaleInElements();
+        showFadeInUpElements();
+    });
+</script>

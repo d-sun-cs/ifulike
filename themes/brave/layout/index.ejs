@@ -1,0 +1,289 @@
+<div id="Pjax">
+    <div class="container">
+        <blockquote class="blockquote text-center my-5 py-4">
+            <h5 class="card-title lover-card-title">小铎和小蕊已经风雨同舟</h5>
+            <h5 id="site_runtime" class="digital-clock">
+                
+            </h5>
+        </blockquote>
+        <div class="row indexPlate" style="margin-bottom: 50px;">
+            <!-- 
+            <div class="col-md-4">
+                <a href="/blessings/" class="card">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <div class="avatar avatar-md">
+                                    <img src="/img/blessings.jpg" alt="..."
+                                        class="avatar-img rounded-circle">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <p class="h5">祝福板</p>
+                                <p class="small text-muted mb-1">💌写下对我们的祝福</p>
+                            </div>
+                        </div>
+                    </div>
+                  </a>
+            </div>
+            -->
+            <div class="col-md-4 fade-in-up" style="transition-delay: 0.2s; margin-bottom: 40px; padding: 0 20px;">
+                <a href="/records/" class="card gradient-bg-1">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="avatar avatar-lg mb-3">
+                            <img src="/img/records.jpg" alt="..." class="avatar-img rounded-circle rotate-on-hover">
+                        </div>
+                        <div class="text-center">
+                            <p class="h3 text-white">点点滴滴</p>
+                            <p class="small text-white mb-1">💖记录你我生活</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+             <div class="col-md-4 fade-in-up" style="transition-delay: 0.4s; margin-bottom: 40px; padding: 0 20px;">
+              <a href="/lovelist/" class="card gradient-bg-2">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="avatar avatar-lg mb-3">
+                            <img src="/img/lovelist.jpg" alt="..." class="avatar-img rounded-circle rotate-on-hover">
+                        </div>
+                        <div class="text-center">
+                            <p class="h3 text-white">Love List</p>
+                            <p class="small text-white mb-1">📜甜蜜瞬间有你陪伴</p>
+                        </div>
+                    </div>
+                  </a>
+            </div>
+            <div class="col-md-4 fade-in-up" style="transition-delay: 0.6s; margin-bottom: 40px; padding: 0 20px;">
+              <a href="/album/" class="card gradient-bg-3">
+                    <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                        <div class="avatar avatar-lg mb-3">
+                            <img src="/img/album.jpg" alt="..." class="avatar-img rounded-circle rotate-on-hover">
+                        </div>
+                        <div class="text-center">
+                            <p class="h3 text-white">相册</p>
+                            <p class="small text-white mb-1">📷记录我们的美好瞬间</p>
+                        </div>
+                    </div>
+                  </a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <% 
+                const colors = ["#ff9999", "#99ccff", "#ffcc99", "#ccff99", "#ff99cc", "#99ffcc", "#ff6666", "#66ccff", "#ffcc66", "#66ff99", "#cc99ff", "#99ff66", "#ff9966", "#6699ff", "#cc66ff", "#66ffcc"];
+                const shuffledColors = colors.sort(() => 0.5 - Math.random());
+                theme.anniversaries.forEach(function(item, index){ 
+                    const color = shuffledColors[index % shuffledColors.length];
+            %>
+                <div class="time_card col-lg-5 col-md-5 col-sm-12 shadow-blur flip-in mx-4" style="background-color: <%= color %>;">
+                        <div class="left_info" data-title="<%= item.title %>">
+                            <span class="day_title"><%= item.title %></span>
+                        </div>
+                         <div class="time_m text-right" style="margin-left: auto;">
+                            <b class="source"><%= new Date(item.date).toISOString().split('T')[0] %></b><br>
+                            <i class="format">
+                                <% 
+                                    var now = new Date();
+                                    var eventDate = new Date(item.date);
+                                    var diffTime = eventDate - now;
+                                    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                                    if (diffDays > 0) {
+                                        %>还有 <%= diffDays %> 天<%
+                                    } else {
+                                        %>过了 <%= Math.abs(diffDays) %> 天<%
+                                    }
+                                %>
+                            </i>
+                        </div>
+                </div>
+            <% }) %>
+        </div>
+  
+        <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+        <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/nprogress/0.2.0/nprogress.min.js"></script>
+        <script>
+            window.showSiteRuntime = function () {
+                site_runtime = $("#site_runtime");
+                if (!site_runtime) {
+                    return;
+                }
+                window.setTimeout("showSiteRuntime()", 1000);
+                start = new Date("<%= theme.lovebegin %>");
+                now = new Date();
+                T = (now.getTime() - start.getTime());
+                i = 24 * 60 * 60 * 1000;
+                d = T / i;
+                D = Math.floor(d);
+                h = (d - D) * 24;
+                H = Math.floor(h);
+                m = (h - H) * 60;
+                M = Math.floor(m);
+                s = (m - M) * 60;
+                S = Math.floor(s);
+                site_runtime.html("<span class=\"bigfontNum\">" + (D < 10 ? '0' + D : D) + "</span> <span class=\"small-text\">天</span> <span class=\"bigfontNum\">" + (H < 10 ? '0' + H : H) + "</span> <span class=\"small-text\">小时</span> <span class=\"bigfontNum\">" + (M < 10 ? '0' + M : M) + "</span> <span class=\"small-text\">分钟</span> <span class=\"bigfontNum\">" + (S < 10 ? '0' + S : S) + "</span> <span class=\"small-text\">秒</span>");
+            };
+            showSiteRuntime();
+
+            function isElementInViewport(el) {
+                var rect = el.getBoundingClientRect();
+                return (
+                    rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+
+            function showFlipInElements() {
+                $('.flip-in').each(function() {
+                    var $item = $(this);
+                    if (isElementInViewport($item[0])) {
+                        $item.addClass('show');
+                    }
+                });
+            }
+
+            function showFadeInUpElements() {
+                $('.fade-in-up').each(function(i) {
+                    var $item = $(this);
+                    setTimeout(function() {
+                        $item.addClass('show');
+                    }, i * 100); // 减少延迟时间
+                });
+            }
+
+            $(document).ready(function() {
+                showFlipInElements();
+                showFadeInUpElements();
+                $(window).on('scroll', function() {
+                    showFlipInElements();
+                    showFadeInUpElements();
+                });
+            });
+
+            $(document).on('pjax:end', function() {
+                showFlipInElements();
+                showFadeInUpElements();
+            });
+        </script>
+        <style>
+            /* 按钮悬停效果 */
+            .card {
+                will-change: transform;
+                border-radius: 15px;
+                height: 230px;
+                transition: transform 0.3s;
+                margin-bottom: 20px;
+            }
+            .card:hover {
+                transform: scale(1.05);
+            }
+            .flip-in {
+                transform: rotateX(90deg);
+                transition: transform 0.5s ease-out;
+            }
+            .flip-in.show {
+                transform: rotateX(0deg);
+            }
+            .fade-in-up {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s, transform 0.5s;
+            }
+            .fade-in-up.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .gradient-bg-1 {
+                background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            }
+            .gradient-bg-2 {
+                background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+            }
+            .gradient-bg-3 {
+                background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            }
+            .avatar-lg img {
+                width: 100px;
+                height: 100px;
+                transition: transform 0.3s;
+            }
+            .rotate-on-hover:hover {
+                transform: rotate(360deg);
+            }
+            .rotate-on-hover {
+                transition: transform 0.3s;
+            }
+            .card:hover .rotate-on-hover {
+                transform: rotate(360deg);
+            }
+            .card:hover .rotate-on-hover {
+                transform: rotate(360deg);
+            }
+            .card:not(:hover) .rotate-on-hover {
+                transform: rotate(-360deg);
+            }
+            .digital-clock {
+                font-family: 'Segment7Standard', sans-serif;
+                font-size: 3.5rem;
+            }
+            .small-text {
+                font-size: 1.5rem;
+            }
+            .time_card {
+                margin-bottom: 20px;
+                padding: 20px;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .left_info {
+                display: flex;
+                align-items: center;
+                flex: 1;
+            }
+            .day_title {
+                font-size: 1.2rem;
+                font-weight: bold;
+                margin-left: 10px;
+            }
+            .time_m {
+                text-align: right;
+                flex: 1;
+                margin-left: auto;
+                margin-right: 10px;
+            }
+            .source {
+                font-size: 1rem;
+                font-weight: bold;
+            }
+            .format {
+                font-size: 0.9rem;
+                color: #888;
+            }
+            @media screen and (max-width: 600px) {
+                .card {
+                    height: 180px;
+                    
+                    margin-bottom: 20px;
+                    padding: 10px;
+                    margin-left: 30px;
+                    margin-right: 30px;
+                }
+                .avatar-lg img {
+                    width: 80px;
+                    height: 80px;
+                }
+                .h3 {
+                    font-size: 1.2rem;
+                }
+                .small {
+                    font-size: 0.9rem;
+                }
+            }
+        </style>
+    </div>
+</div>
