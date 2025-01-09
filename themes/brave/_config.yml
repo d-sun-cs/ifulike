@@ -1,23 +1,21 @@
-lovebegin: 2017-07-27
+lovebegin: 2023-03-25 02:03:00
 
 banner: /img/banner.jpg
 
 # 左边头像的名称
-leftname: boyname
+leftname: D Sun
 leftavatar: /img/boyavatar.jpg
 
 # 右边头像的名称
-rightname: grilname
+rightname: XR Yang
 rightavatar: /img/girlavatar.jpg
 
-
-slogan: 💕愿你三冬暖，愿你天不寒🍂
+slogan: 💕 But I Still Say They're Flowers 🍂
 
 # 站点名称
-sitename: 💖那年初夏💖
+sitename: 💖 If You Like 💖
 
 waline: https://waline-steel-psi.vercel.app/
-
 
 lovelist:
   - desc: 一起看日出🌅
@@ -28,10 +26,10 @@ lovelist:
     img:
   - desc: 一起看绚烂的烟花🌟
     status: 0
-    img:
+    img: /img/sunrise.jpg
   - desc: 一起吃路边摊🍖
     status: 0
-    img:
+    img: /img/sunrise.jpg
   - desc: 一起唱首歌并录下来🎤
     status: 0
     img:
@@ -320,3 +318,116 @@ lovelist:
   - desc: 余生漫漫，执子之手，与子偕老💏
     status: 0
     img:
+
+
+album_collections:
+  - title: 我们的第一次旅行
+    date: 2023-05-01
+    photos:
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+  - title: 生日派对
+    date: 2023-06-15
+    photos:
+      - desc: 吹蜡烛的瞬间
+        img: /img/album.jpg
+      - desc: 切蛋糕的瞬间
+        img: /img/banner.jpg
+      - desc: 生日派对
+        img: /img/boyavatar.jpg
+      - desc: 吹蜡烛的瞬间
+        img: /img/album.jpg
+      - desc: 切蛋糕的瞬间
+        img: /img/banner.jpg
+      - desc: 生日派对
+        img: /img/boyavatar.jpg
+      - desc: 吹蜡烛的瞬间
+        img: /img/album.jpg
+      - desc: 切蛋糕的瞬间
+        img: /img/banner.jpg
+      - desc: 生日派对
+        img: /img/boyavatar.jpg
+  - title: 生日派对2
+    date: 2023-06-15
+    photos:
+      - desc: 吹蜡烛的瞬间
+        img: /img/album.jpg
+      - desc: 切蛋糕的瞬间
+        img: /img/banner.jpg
+      - desc: 生日派对
+        img: /img/boyavatar.jpg
+      - desc: 吹蜡烛的瞬间
+        img: /img/album.jpg
+  - title: 我们的第一次旅行
+    date: 2023-05-01
+    photos:
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+      - desc: 在海边的合影
+        img: /img/album1/lantern.webp
+      - desc: 在山顶的合影
+        img: /img/album1/livingroom.webp
+  - title: 生日派对2
+    date: 2023-06-15
+    photos:
+      - desc: 吹蜡烛的瞬间
+        img: /img/album.jpg
+      - desc: 切蛋糕的瞬间
+        img: /img/banner.jpg
+      - desc: 生日派对
+        img: /img/boyavatar.jpg
+      - desc: 吹蜡烛的瞬间
+        img: /img/album.jpg
+
+
+
+anniversaries:
+  - title: 咕噜的一岁生日
+    date: 2025-07-13
+    type: future
+  - title: 拉拉扯扯一周年啦
+    date: 2024-07-19
+    type: past
+  - title: 咕噜的一岁生日
+    date: 2025-07-13
+    type: future
+  - title: 拉拉扯扯一周年啦
+    date: 2024-07-19
+    type: past
+  - title: 咕噜的一岁生日
+    date: 2025-07-13
+    type: future
+  - title: 拉拉扯扯一周年啦
+    date: 2024-07-19
+    type: past
+  - title: 咕噜的一岁生日
+    date: 2025-07-13
+    type: future

@@ -1,9 +1,9 @@
 <div id="Pjax">
-    <h5 class="list-text scale-in">💕世间最动情之事，莫过于两人相依💑，走过四季三餐的温暖。</h5>
+    <h5 class="list-text fade-in-up">💕世间最动情之事，莫过于两人相依💑，走过四季三餐的温暖。</h5>
     <p></p>
     <div class="accordion mx-auto mt-5" id="loveList">
       <% theme.lovelist.forEach(function(item,index){ %>
-          <div class="card scale-in">
+          <div class="card slide-in-left mb-4">
               <div class="card-header p-1 bg-white" id="heading<%= index %>">
                       <h2 class="mb-0"><span class="btn ml-auto d-flex align-items-center collapsed" type="button"
                           data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="false"
@@ -18,7 +18,7 @@
               </div>
               <% if (!!item.img) { %>
                   <div id="collapse<%= index %>" class="collapse" aria-labelledby="heading<%= index %>" data-parent="#loveList">
-                      <div class="card-body p-0 scale-in">
+                      <div class="card-body p-0 slide-in-left">
                           <img src="<%= item.img %>" alt="Description" style="width:100%; height:auto;">
                       </div>
                   </div>
@@ -28,30 +28,47 @@
     </div>
 </div>
 <style>
-    .scale-in {
+    .fade-in-up {
         opacity: 0;
-        transform: scale(0.9);
+        transform: translateY(20px);
         transition: opacity 0.5s, transform 0.5s;
-        will-change: opacity, transform;
     }
-    .scale-in.show {
+    .fade-in-up.show {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
+    }
+    .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: opacity 0.7s, transform 0.7s;
+    }
+    .slide-in-left.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    .card {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        border: none;
+    }
+    .card-body {
+        padding: 20px;
     }
 </style>
 <script>
     function isElementInViewport(el) {
         var rect = el.getBoundingClientRect();
+        var windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+        var windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+
         return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            (rect.top <= windowHeight && rect.bottom >= 0) &&
+            (rect.left <= windowWidth && rect.right >= 0)
         );
     }
 
-    function showScaleInElements() {
-        $('.scale-in').each(function() {
+    function showElements() {
+        $('.slide-in-left, .fade-in-up').each(function() {
             var $item = $(this);
             if (isElementInViewport($item[0])) {
                 $item.addClass('show');
@@ -60,11 +77,11 @@
     }
 
     $(document).ready(function() {
-        showScaleInElements();
-        $(window).on('scroll', showScaleInElements);
+        showElements();
+        $(window).on('scroll', showElements);
     });
 
     $(document).on('pjax:end', function() {
-        showScaleInElements();
+        showElements();
     });
 </script>
